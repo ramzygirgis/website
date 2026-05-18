@@ -7,10 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
-  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <style>
   :root {
     --bg:           #f2ede4;
@@ -469,6 +472,19 @@
     color: var(--ink-muted);
     font-size: 14px;
     max-width: 56ch;
+  }
+  .theorem-importance {
+    color: var(--ink-muted);
+    font-size: 12.5px;
+    font-style: italic;
+    margin-top: 10px;
+    max-width: 56ch;
+  }
+  .theorem-math {
+    margin: 10px 0;
+    color: var(--ink);
+    text-align: center;
+    font-size: 14px;
   }
 
   @media (max-width: 640px) {
@@ -1026,20 +1042,36 @@
           <h3>Favourite theorems</h3>
           <ul class="theorem-list">
             <li>
-              <span class="theorem-name">Fundamental Theorem of Algebra</span>
-              <p class="theorem-desc">Every non-constant polynomial with complex coefficients has a complex root. A short statement, three centuries of proofs, and a hint that algebra and analysis are the same subject from two angles.</p>
+              <span class="theorem-name">Tannaka–Krein Duality</span>
+              <p class="theorem-desc">A compact group $G$ can be reconstructed from its category of finite-dimensional representations together with their tensor structure:</p>
+              <div class="theorem-math">$$G \cong \mathrm{Aut}^\otimes(F),$$</div>
+              <p class="theorem-desc">where $F: \mathrm{Rep}(G) \to \mathrm{Vec}$ is the forgetful functor.</p>
+              <p class="theorem-importance">A group is equivalent to <em>how it acts on all vector spaces</em>. The seed of quantum groups and categorical reconstruction.</p>
             </li>
             <li>
-              <span class="theorem-name">Cantor's Theorem</span>
-              <p class="theorem-desc">For any set, there is no surjection onto its power set — there are strictly more subsets of a set than elements. The diagonal argument that started it all.</p>
+              <span class="theorem-name">Hilbert's Theorem 90</span>
+              <p class="theorem-desc">For a cyclic Galois extension $L/K$ with generator $\sigma$:</p>
+              <div class="theorem-math">$$H^1(\mathrm{Gal}(L/K), L^\times) = 0,$$</div>
+              <p class="theorem-desc">equivalently $N_{L/K}(x) = 1 \implies x = y/\sigma(y)$ for some $y \in L^\times$. Over $\mathbb{F}_{q^n}/\mathbb{F}_q$ this reads $N(x) = 1 \implies x = y/y^q$.</p>
+              <p class="theorem-importance">The first deep cohomological triviality in number theory. Seed of Galois cohomology, descent theory, and modern algebraic geometry.</p>
             </li>
             <li>
-              <span class="theorem-name">Spectral Theorem</span>
-              <p class="theorem-desc">Every self-adjoint operator on a finite-dimensional inner product space has an orthonormal basis of eigenvectors. Linear algebra at its most useful — and the reason PCA, quantum mechanics, and Fourier analysis all rhyme.</p>
+              <span class="theorem-name">Peter–Weyl Theorem</span>
+              <p class="theorem-desc">For a compact group $G$, matrix coefficients of irreducible unitary representations are dense in $C(G)$ and orthonormal in $L^2(G)$:</p>
+              <div class="theorem-math">$$L^2(G) \cong \bigoplus_{\pi \in \hat G} V_\pi \otimes V_\pi^*.$$</div>
+              <p class="theorem-importance">Fourier analysis on arbitrary compact groups — irreducible representations are the <em>frequencies</em> of symmetry. Underlies harmonic analysis and Lie group theory.</p>
             </li>
             <li>
-              <span class="theorem-name">Quadratic Reciprocity</span>
-              <p class="theorem-desc">For distinct odd primes p and q, knowing whether p is a square mod q tells you whether q is a square mod p, up to a sign. Number theory's first deep symmetry.</p>
+              <span class="theorem-name">Absolute Galois group is a Cantor set</span>
+              <p class="theorem-desc">The absolute Galois group $G_\mathbb{Q} = \mathrm{Gal}(\overline{\mathbb{Q}}/\mathbb{Q})$, equipped with its Krull topology, is compact, totally disconnected, perfect, and uncountable — hence homeomorphic (as a topological space) to the Cantor set.</p>
+              <p class="theorem-importance">The “symmetry of all algebraic numbers” is fractal at its core: no isolated points, no smooth structure. Motivates profinite groups and Galois representations.</p>
+            </li>
+            <li>
+              <span class="theorem-name">Profinite completion of $\mathbb{Z}$</span>
+              <p class="theorem-desc">The profinite completion of the integers decomposes as</p>
+              <div class="theorem-math">$$\widehat{\mathbb{Z}} \cong \prod_p \mathbb{Z}_p,$$</div>
+              <p class="theorem-desc">a product over all primes of the $p$-adic integers. Equivalently $\widehat{\mathbb{Z}} = \varprojlim_n \mathbb{Z}/n\mathbb{Z}$.</p>
+              <p class="theorem-importance">Integers are determined by all their modular shadows. Backbone of local–global principles, class field theory, and adèles.</p>
             </li>
           </ul>
         </div>

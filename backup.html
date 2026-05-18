@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ramzy Girgis — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+<style>
+  :root {
+    --bg:           #f2ede4;
+    --chrome:       #ddd5c5;
+    --chrome-deep:  #d2cab8;
+    --ink:          #1c1917;
+    --ink-muted:    #6b6358;
+    --ink-faint:    #a8a094;
+    --accent:       #b45309;
+    --accent-soft:  #d97706;
+    --success:      #0f766e;
+    --rule:         #d6cfc0;
+    --rule-soft:    #e3dccd;
+    --lvl-strong:       #1e3a8a;
+    --lvl-comfortable:  #3b82f6;
+    --lvl-learning:     #93c5fd;
+    --shadow:       0 20px 60px -12px rgba(28, 25, 23, 0.18), 0 4px 16px -4px rgba(28, 25, 23, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--chrome);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  /* ─── Chrome browser frame ──────────────────────────────────── */
+  .browser {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chrome-bar {
+    background: var(--chrome);
+    padding: 10px 16px 0;
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    border-bottom: 1px solid var(--rule);
+    flex-shrink: 0;
+  }
+
+  .dots { display: flex; gap: 7px; padding-bottom: 12px; }
+  .dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    transition: filter 0.15s;
+  }
+  .dots:hover .dot { filter: brightness(0.92); }
+  .dot:nth-child(1) { background: #ec6a5e; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.1); }
+  .dot:nth-child(2) { background: #f4bf4f; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.1); }
+  .dot:nth-child(3) { background: #61c554; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.1); }
+
+  /* ─── Tabs ──────────────────────────────────────────────────── */
+  .tabs {
+    display: flex;
+    gap: 2px;
+    flex: 1;
+    align-items: flex-end;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+
+  .tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px 10px;
+    background: transparent;
+    color: var(--ink-muted);
+    border: none;
+    font: inherit;
+    font-size: 12.5px;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    position: relative;
+    min-width: 0;
+    max-width: 200px;
+  }
+  .tab:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: var(--ink);
+  }
+  .tab.active {
+    background: var(--bg);
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .tab.active::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 1px;
+    background: var(--bg);
+  }
+  .tab .favicon {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+  .tab.active .favicon { opacity: 1; }
+
+  /* ─── Address bar ───────────────────────────────────────────── */
+  .url-bar {
+    background: var(--bg);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--rule-soft);
+    flex-shrink: 0;
+  }
+  .url-actions {
+    display: flex;
+    gap: 6px;
+    color: var(--ink-faint);
+  }
+  .url-btn {
+    width: 22px; height: 22px;
+    display: grid; place-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .url-btn:hover { background: var(--chrome-deep); color: var(--ink-muted); }
+  .url-btn svg { width: 14px; height: 14px; stroke-width: 2; }
+
+  .url {
+    flex: 1;
+    background: var(--chrome-deep);
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .url .lock {
+    color: var(--success);
+    font-size: 11px;
+  }
+  .url .scheme { color: var(--ink-faint); }
+  .url .domain { color: var(--ink); }
+
+  /* ─── Content area ──────────────────────────────────────────── */
+  .viewport {
+    flex: 1;
+    background: var(--bg);
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    display: none;
+    animation: pageIn 0.4s ease;
+  }
+  .page.active { display: block; }
+  @keyframes pageIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── Typography ────────────────────────────────────────────── */
+  .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-muted);
+    margin-bottom: 18px;
+  }
+  .eyebrow::before {
+    content: "// ";
+    color: var(--accent);
+  }
+
+  h1.display {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(56px, 9vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  h1.display .accent { color: var(--accent); }
+
+  h2.section-title {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    margin-bottom: 36px;
+    font-weight: 400;
+  }
+
+  p.lead {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 18px;
+    max-width: 60ch;
+  }
+  p.body {
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+    max-width: 60ch;
+  }
+
+  a.link {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  a.link:hover { border-color: var(--accent); }
+
+  /* ─── About page details ────────────────────────────────────── */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 6px 28px;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule-soft);
+    font-size: 13px;
+  }
+  .meta-grid dt {
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+    align-self: center;
+  }
+  .meta-grid dd { color: var(--ink); }
+
+  /* ─── Projects ──────────────────────────────────────────────── */
+  .project {
+    padding: 28px 0;
+    border-top: 1px solid var(--rule-soft);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+  }
+  .project:first-of-type { border-top: none; padding-top: 0; }
+  .project-year {
+    color: var(--ink-faint);
+    font-size: 12px;
+    padding-top: 4px;
+  }
+  .project-name {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 28px;
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+  .project-stack {
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .project-desc {
+    color: var(--ink-muted);
+    font-size: 14px;
+    margin-bottom: 8px;
+    max-width: 56ch;
+  }
+  .stat {
+    color: var(--ink);
+    font-weight: 500;
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 1px;
+  }
+
+  /* ─── Skills ────────────────────────────────────────────────── */
+  .skill-group { margin-bottom: 28px; }
+  .skill-group h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+    color: var(--ink);
+  }
+  .skill-list span {
+    padding-bottom: 2px;
+    border-bottom: 3px solid;
+  }
+  .skill-list .lvl-3 { border-bottom-color: var(--lvl-strong); }
+  .skill-list .lvl-2 { border-bottom-color: var(--lvl-comfortable); }
+  .skill-list .lvl-1 { border-bottom-color: var(--lvl-learning); }
+
+  .skill-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin-bottom: 36px;
+    font-size: 11.5px;
+    color: var(--ink-muted);
+    align-items: baseline;
+  }
+  .skill-legend .legend-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-faint);
+    margin-right: 2px;
+  }
+  .skill-legend .lvl-1,
+  .skill-legend .lvl-2,
+  .skill-legend .lvl-3 {
+    padding-bottom: 2px;
+    border-bottom: 3px solid;
+  }
+  .skill-legend .lvl-3 { border-bottom-color: var(--lvl-strong); }
+  .skill-legend .lvl-2 { border-bottom-color: var(--lvl-comfortable); }
+  .skill-legend .lvl-1 { border-bottom-color: var(--lvl-learning); }
+
+  /* ─── Experience ────────────────────────────────────────────── */
+  .job {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .job:first-of-type { border-top: none; padding-top: 0; }
+  .job-years { color: var(--ink-faint); font-size: 12px; padding-top: 3px; }
+  .job-role {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .job-company { color: var(--accent); font-size: 13px; }
+
+  /* ─── Contact ───────────────────────────────────────────────── */
+  .contact-list {
+    list-style: none;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .contact-list li {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    font-size: 14px;
+  }
+  .contact-list li span:first-child {
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+    align-self: center;
+  }
+
+  /* ─── Math page ─────────────────────────────────────────────── */
+  .math-block { margin-top: 44px; }
+  .math-block h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+
+  .course-list {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 8px 28px;
+    font-size: 14px;
+  }
+  .course-list dt {
+    color: var(--ink-muted);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    padding-top: 3px;
+  }
+  .course-list dd { color: var(--ink); }
+
+  .term { margin-bottom: 26px; }
+  .term:last-child { margin-bottom: 0; }
+  .term h4 {
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-weight: 500;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .book-list, .theorem-list { list-style: none; }
+
+  .book-list li {
+    padding: 10px 0;
+    border-top: 1px solid var(--rule-soft);
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .book-list li:first-child { border-top: none; padding-top: 0; }
+  .book-title {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .book-author { color: var(--ink-muted); font-size: 12.5px; }
+
+  .theorem-list li {
+    padding: 18px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .theorem-list li:first-child { border-top: none; padding-top: 0; }
+  .theorem-name {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .theorem-desc {
+    color: var(--ink-muted);
+    font-size: 14px;
+    max-width: 56ch;
+  }
+
+  @media (max-width: 640px) {
+    .book-list li { grid-template-columns: 1fr; gap: 2px; }
+  }
+
+  /* ─── macOS-style notification (post-terminal tip) ─────────── */
+  .notif {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    width: 360px;
+    max-width: calc(100vw - 28px);
+    background: rgba(28, 25, 23, 0.78);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    color: #f5f5f4;
+    border-radius: 14px;
+    padding: 12px 14px 14px;
+    box-shadow:
+      0 12px 40px -8px rgba(0, 0, 0, 0.35),
+      0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    z-index: 200;
+    font-size: 13px;
+    line-height: 1.4;
+    transform: translateX(calc(100% + 24px));
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  .notif.show { transform: translateX(0); opacity: 1; }
+  .notif.hide { transform: translateX(calc(100% + 24px)); opacity: 0; }
+  .notif-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 3px;
+  }
+  .notif-icon {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #f4bf4f, #d97706);
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+    color: #1c1917;
+    font-weight: 600;
+    font-size: 15px;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.2);
+  }
+  .notif-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: #f5f5f4;
+    flex: 1;
+    letter-spacing: -0.005em;
+  }
+  .notif-time {
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .notif-body {
+    font-size: 12.5px;
+    color: rgba(245, 245, 244, 0.85);
+    padding-left: 38px;
+  }
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 25, 23, 0.12);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 99;
+    animation: backdropIn 0.35s ease forwards;
+  }
+  @keyframes backdropIn {
+    from { opacity: 0; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
+    to   { opacity: 1; }
+  }
+  .backdrop.closing {
+    animation: backdropOut 0.28s ease forwards;
+  }
+  @keyframes backdropOut {
+    to { opacity: 0; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
+  }
+
+  .terminal {
+    position: fixed;
+    top: 22%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(440px, calc(100vw - 32px));
+    min-width: 280px;
+    min-height: 140px;
+    max-width: calc(100vw - 16px);
+    max-height: calc(100vh - 16px);
+    background: #1c1917;
+    color: #e7e5e4;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    z-index: 100;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.22s ease;
+    animation: termIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .terminal.lifted {
+    box-shadow:
+      0 32px 80px -8px rgba(28, 25, 23, 0.32),
+      0 10px 28px -4px rgba(28, 25, 23, 0.18);
+  }
+  @keyframes termIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(-8px) scale(0.98); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  }
+  .terminal.closing {
+    animation: termOut 0.25s ease forwards;
+  }
+  @keyframes termOut {
+    to { opacity: 0; }
+  }
+
+  .term-bar {
+    background: #292524;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: grab;
+    user-select: none;
+    position: relative;
+    flex-shrink: 0;
+    transition: background-color 0.15s ease;
+  }
+  .term-bar:hover    { background: #322d2b; }
+  .term-bar.dragging { background: #3a3432; cursor: grabbing; }
+  .term-bar:active   { cursor: grabbing; }
+
+  .term-grip {
+    width: 10px;
+    height: 14px;
+    fill: #57534e;
+    vertical-align: -2px;
+    margin-right: 6px;
+    transition: fill 0.15s ease;
+  }
+  .term-bar:hover .term-grip,
+  .term-bar.dragging .term-grip { fill: #a8a29e; }
+  .term-bar .dot { width: 11px; height: 11px; }
+  .term-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #a8a29e;
+    font-size: 11.5px;
+    pointer-events: none;
+  }
+  .term-close {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: #57534e;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: color 0.15s;
+    font-family: inherit;
+  }
+  .term-close:hover { color: #e7e5e4; }
+
+  .term-body {
+    padding: 18px 18px 16px;
+    line-height: 1.7;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .term-body .line { white-space: pre-wrap; }
+  .term-prompt { color: #f4bf4f; margin-right: 8px; }
+  .term-muted { color: #a8a29e; }
+  .term-accent { color: #f4bf4f; }
+  .term-success { color: #86efac; }
+
+  .term-input-line {
+    display: flex;
+    align-items: baseline;
+    margin-top: 6px;
+  }
+  .term-input-line .arrow { color: #f4bf4f; margin-right: 8px; }
+  .term-typed { color: #e7e5e4; }
+  .term-hidden {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0; height: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .blink {
+    display: inline-block;
+    width: 7px; height: 1em;
+    background: #e7e5e4;
+    vertical-align: text-bottom;
+    animation: blink 1.05s steps(1) infinite;
+    margin-left: 1px;
+  }
+  .blink.hidden { display: none; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .term-handle {
+    position: absolute;
+    z-index: 3;
+    touch-action: none;
+    transition: box-shadow 0.15s ease, background-color 0.15s ease;
+  }
+
+  /* edge handles — wider hit zones, with a hover hint line at the actual edge */
+  .term-handle-n, .term-handle-s {
+    left: 14px; right: 14px;
+    cursor: ns-resize;
+  }
+  .term-handle-n { top: -4px;    height: 8px;  }
+  .term-handle-s { bottom: -4px; height: 12px; }
+
+  .term-handle-e, .term-handle-w {
+    top: 14px; bottom: 14px;
+    width: 8px;
+    cursor: ew-resize;
+  }
+  .term-handle-e { right: -4px; }
+  .term-handle-w { left: -4px; }
+
+  /* hover: a 1px highlight along the actual window edge */
+  .term-handle-n:hover { box-shadow: inset 0 -1px 0 rgba(244, 191, 79, 0.55); }
+  .term-handle-s:hover { box-shadow: inset 0  1px 0 rgba(244, 191, 79, 0.55); }
+  .term-handle-e:hover { box-shadow: inset  1px 0 0 rgba(244, 191, 79, 0.55); }
+  .term-handle-w:hover { box-shadow: inset -1px 0 0 rgba(244, 191, 79, 0.55); }
+
+  /* corner handles — bigger, sit on top of edges */
+  .term-handle-nw, .term-handle-ne, .term-handle-sw, .term-handle-se {
+    width: 18px; height: 18px;
+    z-index: 4;
+  }
+  .term-handle-nw { top: -4px;    left: -4px;   cursor: nwse-resize; }
+  .term-handle-ne { top: -4px;    right: -4px;  cursor: nesw-resize; }
+  .term-handle-sw { bottom: -4px; left: -4px;   cursor: nesw-resize; }
+
+  /* hover hints on the three plain corners (SE has its own stripes) */
+  .term-handle-nw:hover { box-shadow: inset  1px  1px 0 rgba(244, 191, 79, 0.55); }
+  .term-handle-ne:hover { box-shadow: inset -1px  1px 0 rgba(244, 191, 79, 0.55); }
+  .term-handle-sw:hover { box-shadow: inset  1px -1px 0 rgba(244, 191, 79, 0.55); }
+
+  .term-handle-se {
+    bottom: 0; right: 0;
+    cursor: nwse-resize;
+    opacity: 0.35;
+    background-image: linear-gradient(135deg,
+      transparent 0%, transparent 55%,
+      #a8a29e 55%, #a8a29e 65%,
+      transparent 65%, transparent 75%,
+      #a8a29e 75%, #a8a29e 85%,
+      transparent 85%);
+    transition: opacity 0.15s;
+  }
+  .term-handle-se:hover { opacity: 0.85; }
+
+  /* responsive */
+  @media (max-width: 640px) {
+    .page { padding: 56px 20px 100px; }
+    .project { grid-template-columns: 1fr; gap: 6px; }
+    .job     { grid-template-columns: 1fr; gap: 4px; }
+    .contact-list li { grid-template-columns: 1fr; gap: 2px; }
+    .url-actions { display: none; }
+    .tab { padding: 9px 12px 10px; }
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+  .terminal ::selection { background: #f4bf4f; color: #1c1917; }
+</style>
+</head>
+<body>
+
+  <div class="browser">
+    <!-- Chrome top: dots + tabs -->
+    <div class="chrome-bar">
+      <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <nav class="tabs" id="tabs">
+        <button class="tab active" data-tab="about"><span class="favicon"></span>about</button>
+        <button class="tab" data-tab="projects"><span class="favicon"></span>projects</button>
+        <button class="tab" data-tab="skills"><span class="favicon"></span>skills</button>
+        <button class="tab" data-tab="experience"><span class="favicon"></span>experience</button>
+        <button class="tab" data-tab="math"><span class="favicon"></span>math</button>
+        <button class="tab" data-tab="contact"><span class="favicon"></span>contact</button>
+      </nav>
+    </div>
+
+    <!-- Address bar -->
+    <div class="url-bar">
+      <div class="url-actions">
+        <div class="url-btn" title="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+        <div class="url-btn" title="Forward"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="url-btn" title="Reload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></div>
+      </div>
+      <div class="url">
+        <span class="lock">●</span>
+        <span class="scheme">https://</span><span class="domain">ramzyg.dev</span><span class="path" id="urlPath">/about</span>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <main class="viewport" id="viewport">
+
+      <!-- ABOUT -->
+      <section class="page active" data-page="about">
+        <div class="eyebrow">about</div>
+        <h1 class="display">Hi, I'm <span class="accent">Ramzy</span>.<br/>I build software.</h1>
+        <p class="lead">Math undergrad at the University of Waterloo, studying Scientific ML and Pure Math. I like building systems: backends, dev tools, and the layers underneath that hold everything together. I'm also interested in machine learning, quantitative trading, and the intersection of math, statistics, and software engineering.</p>
+        <p class="body">Currently leading research and development at WatStreet on a project applying information-theoretic methods and machine learning to quantitative trading. Previously shipped AI/NLP and full-stack work at the National Research Council. Recently picked up Go — really enjoying it.</p>
+        <dl class="meta-grid">
+          <dt>Studying</dt> <dd>Math at the University of Waterloo</dd>
+          <dt>Based in</dt> <dd>Waterloo, ON</dd>
+          <dt>Focus</dt>    <dd>Backend · Full-stack · Math/ML/Stats</dd>
+          <dt>Status</dt>   <dd><span style="color:var(--success)">●</span> Open to interesting problems</dd>
+        </dl>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="page" data-page="projects">
+        <div class="eyebrow">projects</div>
+        <h2 class="section-title">Selected work.</h2>
+
+        <div class="project">
+          <div class="project-year">Apr 2026</div>
+          <div>
+            <div class="project-name">IMC Prosperity 4 — Trading Toolkit</div>
+            <div class="project-stack">Python · TypeScript · React · FastAPI</div>
+            <div class="project-desc">A backtesting and live-execution toolkit for trading strategies. Three execution modes: CSV replay, synthetic markets sampled from configurable distributions, and live subprocesses, all orchestrated through a FastAPI service and a React dashboard. Placed <span class="stat">top 1%</span> (200 of 22,000 teams) in the qualifier rounds, including <span class="stat">5th globally</span> and <span class="stat">9th</span> in the manual trading round.</div>
+            <a class="link" href="https://github.com/ramzygirgis/IMC-Prosperity-2026" target="_blank" rel="noopener">github.com/ramzygirgis/IMC-Prosperity-2026 →</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-year">May 2026</div>
+          <div>
+            <div class="project-name">RSS Blog Aggregator CLI</div>
+            <div class="project-stack">Go · PostgreSQL · sqlc · goose</div>
+            <div class="project-desc">A Go CLI that subscribes to RSS feeds, polls them on a configurable interval, and stores deduplicated posts in PostgreSQL. Normalized schema with goose migrations and sqlc-generated type-safe queries; command dispatch with middleware-wrapped authenticated handlers over a JSON config layer.</div>
+            <a class="link" href="https://github.com/ramzygirgis/feed-aggregator" target="_blank" rel="noopener">github.com/ramzygirgis/feed-aggregator →</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-year">Ongoing</div>
+          <div>
+            <div class="project-name">goPMATH</div>
+            <div class="project-stack">Go · Pure Math</div>
+            <div class="project-desc">An in-progress Go library for computations in pure mathematics, aiming for a small-scale <em>Sage for Go</em>. Currently supports group theory (permutations, cyclic and symmetric groups), ring theory and polynomial rings, basic linear algebra, and elementary number theory algorithms including primality tests.</div>
+            <a class="link" href="https://github.com/ramzygirgis/goPMATH" target="_blank" rel="noopener">github.com/ramzygirgis/goPMATH →</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-year">Mar 2026</div>
+          <div>
+            <div class="project-name">LLM-Powered Debugging Agent</div>
+            <div class="project-stack">Python · Gemini API</div>
+            <div class="project-desc">A CLI tool built around an AI agent that autonomously reads, edits, and runs Python code to diagnose bugs, generate tests, and help understand the codebase. The agent runs a Gemini tool-calling loop over a safeguarded operation set (read/write, ls, Python execution). Safeguards restrict it to the working directory and to Python files; a local config lets the user pick their Gemini model and iteration limit to manage API costs.</div>
+            <a class="link" href="https://github.com/ramzygirgis/cli-coding-agent" target="_blank" rel="noopener">github.com/ramzygirgis/cli-coding-agent →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="page" data-page="skills">
+        <div class="eyebrow">skills</div>
+        <h2 class="section-title">Toolbox.</h2>
+        <p class="body" style="margin-bottom: 16px">Tools I reach for most often. The list is honest, not exhaustive — happy to learn anything the problem calls for.</p>
+
+        <div class="skill-legend">
+          <span class="legend-label">familiarity</span>
+          <span class="lvl-3">strong</span>
+          <span class="lvl-2">comfortable</span>
+          <span class="lvl-1">learning</span>
+        </div>
+
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <div class="skill-list">
+            <span class="lvl-3">Go</span>
+            <span class="lvl-3">Python</span>
+            <span class="lvl-3">SQL</span>
+            <span class="lvl-2">C / C++</span>
+            <span class="lvl-2">TypeScript</span>
+            <span class="lvl-2">C#</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Frameworks & Libraries</h3>
+          <div class="skill-list">
+            <span class="lvl-3">PyTorch</span>
+            <span class="lvl-3">NumPy</span>
+            <span class="lvl-3">Pandas</span>
+            <span class="lvl-2">FastAPI</span>
+            <span class="lvl-2">React</span>
+            <span class="lvl-2">Next.js</span>
+            <span class="lvl-1">Django</span>
+            <span class="lvl-1">scikit-learn</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Tools & Infra</h3>
+          <div class="skill-list">
+            <span class="lvl-3">Git</span>
+            <span class="lvl-3">Linux</span>
+            <span class="lvl-3">PostgreSQL</span>
+            <span class="lvl-3">Claude Code</span>
+            <span class="lvl-3">REST APIs</span>
+            <span class="lvl-2">MySQL</span>
+            <span class="lvl-2">Codex</span>
+            <span class="lvl-2">Docker</span>
+            <span class="lvl-2">gRPC</span>
+            <span class="lvl-1">Kubernetes</span>
+            <span class="lvl-1">RabbitMQ</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="page" data-page="experience">
+        <div class="eyebrow">experience</div>
+        <h2 class="section-title">Where I've been.</h2>
+
+        <div class="job">
+          <div class="job-years">Jan — Apr 2025</div>
+          <div>
+            <div class="job-role">AI & Full-Stack Developer</div>
+            <div class="job-company">National Research Council</div>
+            <p class="body" style="margin-top:10px">Designed scalable C#/.NET REST APIs supporting technical enquiries on new building-code regulations. Worked with NLP pipelines that use sentence-embedding models and maximum-weight bipartite matching for semantic sentence alignment on ~50,000 lines of regulatory text. Shipped full-stack web apps across TypeScript, .NET, and SQL.</p>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-years">Nov 2025 — present</div>
+          <div>
+            <div class="job-role">Project Lead</div>
+            <div class="job-company">WatStreet Research</div>
+            <p class="body" style="margin-top:10px">Building a regime-aware pairs trading system that learns when cointegration-based signals are reliable. Detecting unstable market regimes via spikes in KL divergence between recent spread behavior and ARMA-implied distributions, and training a Transformer-based confidence model to filter false mean-reversion trades.</p>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-years">May 2026 — present</div>
+          <div>
+            <div class="job-role">Undergraduate Mathematics Tutor</div>
+            <div class="job-company">University of Waterloo</div>
+            <p class="body" style="margin-top:10px">Tutoring first and second year students in number theory, linear algebra, and calculus at Waterloo's Mathematics Tutoring Centre.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MATH -->
+      <section class="page" data-page="math">
+        <div class="eyebrow">math</div>
+        <h2 class="section-title">Math.</h2>
+        <p class="lead">What I love about math is when a long chain of coincidences turns out to come from the same deep idea. Algebra and number theory pull me hardest on the pure side; on the applied side, probability theory and ML are where the math actually does work.</p>
+        <p class="body">A running list of what I've taken, what I'm reading, and a few results I keep coming back to.</p>
+
+        <div class="math-block">
+          <h3>Coursework</h3>
+
+          <div class="term">
+            <h4>MATH</h4>
+            <dl class="course-list">
+              <dt>MATH 145</dt>  <dd>Algebra (Advanced)</dd>
+              <dt>MATH 146</dt>  <dd>Linear Algebra 1 (Advanced)</dd>
+              <dt>MATH 245</dt>  <dd>Linear Algebra 2 (Advanced)</dd>
+              <dt>MATH 147</dt>  <dd>Calculus 1 (Advanced)</dd>
+              <dt>MATH 148</dt>  <dd>Calculus 2 (Advanced)</dd>
+              <dt>MATH 247</dt>  <dd>Calculus 3 (Advanced)</dd>
+              <dt>AMATH 251</dt> <dd>Differential Equations (Advanced)</dd>
+              <dt>STAT 230</dt>  <dd>Probability</dd>
+              <dt>MATH 249</dt>  <dd>Combinatorics (Advanced)</dd>
+            </dl>
+          </div>
+
+          <div class="term">
+            <h4>PMATH</h4>
+            <dl class="course-list">
+              <dt>PMATH 347</dt> <dd>Groups & Rings</dd>
+              <dt>PMATH 351</dt> <dd>Real Analysis</dd>
+              <dt>PMATH 352</dt> <dd>Complex Analysis</dd>
+              <dt>PMATH 450</dt> <dd>Measure Theory</dd>
+            </dl>
+          </div>
+
+          <div class="term">
+            <h4>PHYS</h4>
+            <dl class="course-list">
+              <dt>PHYS 111</dt>  <dd>Physics 1</dd>
+              <dt>PHYS 122</dt>  <dd>Waves, Electricity & Magnetism</dd>
+              <dt>PHYS 124</dt>  <dd>Modern Physics</dd>
+              <dt>AMATH 271</dt> <dd>Theoretical Mechanics</dd>
+            </dl>
+          </div>
+
+          <div class="term">
+            <h4>CS</h4>
+            <dl class="course-list">
+              <dt>CS 136</dt>    <dd>Elementary Algorithm Design & Data Abstraction in C</dd>
+              <dt>CS 136L</dt>   <dd>Tools & Techniques for Software Dev</dd>
+              <dt>CS 231</dt>    <dd>Algorithmic Problem Solving</dd>
+              <dt>CS 246</dt>    <dd>Object-Oriented Programming in C++</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="math-block">
+          <h3>Reading</h3>
+          <ul class="book-list">
+            <li>
+              <span class="book-title">Algebra: Chapter 0</span>
+              <span class="book-author">Paolo Aluffi</span>
+            </li>
+            <li>
+              <span class="book-title">Algebra</span>
+              <span class="book-author">Thomas Hungerford</span>
+            </li>
+            <li>
+              <span class="book-title">Linear Representations of Finite Groups</span>
+              <span class="book-author">Jean-Pierre Serre</span>
+            </li>
+            <li>
+              <span class="book-title">Introduction to Commutative Algebra</span>
+              <span class="book-author">Atiyah & Macdonald</span>
+            </li>
+            <li>
+              <span class="book-title">Real and Functional Analysis</span>
+              <span class="book-author">Serge Lang</span>
+            </li>
+            <li>
+              <span class="book-title">Fundamentals of Differential Geometry</span>
+              <span class="book-author">Serge Lang</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="math-block">
+          <h3>Favourite theorems</h3>
+          <ul class="theorem-list">
+            <li>
+              <span class="theorem-name">Fundamental Theorem of Algebra</span>
+              <p class="theorem-desc">Every non-constant polynomial with complex coefficients has a complex root. A short statement, three centuries of proofs, and a hint that algebra and analysis are the same subject from two angles.</p>
+            </li>
+            <li>
+              <span class="theorem-name">Cantor's Theorem</span>
+              <p class="theorem-desc">For any set, there is no surjection onto its power set — there are strictly more subsets of a set than elements. The diagonal argument that started it all.</p>
+            </li>
+            <li>
+              <span class="theorem-name">Spectral Theorem</span>
+              <p class="theorem-desc">Every self-adjoint operator on a finite-dimensional inner product space has an orthonormal basis of eigenvectors. Linear algebra at its most useful — and the reason PCA, quantum mechanics, and Fourier analysis all rhyme.</p>
+            </li>
+            <li>
+              <span class="theorem-name">Quadratic Reciprocity</span>
+              <p class="theorem-desc">For distinct odd primes p and q, knowing whether p is a square mod q tells you whether q is a square mod p, up to a sign. Number theory's first deep symmetry.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="page" data-page="contact">
+        <div class="eyebrow">contact</div>
+        <h2 class="section-title">Say hi.</h2>
+        <p class="lead">The fastest way to reach me is email. I read everything and reply to most things.</p>
+        <ul class="contact-list">
+          <li><span>Email</span>    <a class="link" href="mailto:rgirgis@uwaterloo.ca">rgirgis@uwaterloo.ca</a></li>
+          <li><span>GitHub</span>   <a class="link" href="https://github.com/ramzygirgis" target="_blank" rel="noopener">github.com/ramzygirgis</a></li>
+          <li><span>LinkedIn</span> <a class="link" href="https://linkedin.com/in/ramzygirgis" target="_blank" rel="noopener">linkedin.com/in/ramzygirgis</a></li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Blur backdrop behind the greeting -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <!-- Floating terminal greeting -->
+  <div class="terminal" id="terminal" role="dialog" aria-label="Welcome prompt">
+    <div class="term-bar" id="termBar">
+      <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <span class="term-title">
+        <svg class="term-grip" viewBox="0 0 10 14" aria-hidden="true">
+          <circle cx="2" cy="3" r="1"/><circle cx="2" cy="7" r="1"/><circle cx="2" cy="11" r="1"/>
+          <circle cx="8" cy="3" r="1"/><circle cx="8" cy="7" r="1"/><circle cx="8" cy="11" r="1"/>
+        </svg>
+        ~/welcome
+      </span>
+      <button class="term-close" id="termClose" aria-label="Close prompt" title="Close (Esc)">×</button>
+    </div>
+    <div class="term-body" id="termBody">
+      <div class="line"><span class="term-prompt">$</span>welcome to <span class="term-accent">ramzy's</span> portfolio.</div>
+      <div class="line term-muted">mind if i show you around? <span class="term-accent">[y/n]</span></div>
+      <div class="term-input-line" id="termPromptLine">
+        <span class="arrow">›</span>
+        <span class="term-typed" id="termTyped"></span><span class="blink" id="termBlink"></span>
+      </div>
+    </div>
+    <input class="term-hidden" id="termHidden" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-hidden="true" tabindex="-1" />
+    <!-- 8 resize handles: 4 edges + 4 corners -->
+    <div class="term-handle term-handle-n"  data-dir="n"  aria-hidden="true"></div>
+    <div class="term-handle term-handle-s"  data-dir="s"  aria-hidden="true"></div>
+    <div class="term-handle term-handle-e"  data-dir="e"  aria-hidden="true"></div>
+    <div class="term-handle term-handle-w"  data-dir="w"  aria-hidden="true"></div>
+    <div class="term-handle term-handle-nw" data-dir="nw" aria-hidden="true"></div>
+    <div class="term-handle term-handle-ne" data-dir="ne" aria-hidden="true"></div>
+    <div class="term-handle term-handle-sw" data-dir="sw" aria-hidden="true"></div>
+    <div class="term-handle term-handle-se" data-dir="se" aria-hidden="true" title="Resize"></div>
+  </div>
+
+  <!-- macOS-style notification (shown after terminal dismisses) -->
+  <div class="notif" id="notif" role="status" aria-live="polite">
+    <div class="notif-header">
+      <div class="notif-icon">⌘</div>
+      <span class="notif-title">Pro tip</span>
+      <span class="notif-time">now</span>
+    </div>
+    <div class="notif-body">Hit ⌘ (or Ctrl) + 1–6 to jump straight to any tab.</div>
+  </div>
+
+<script>
+  // ─── Tabs ───────────────────────────────────────────────────
+  const tabs = document.querySelectorAll('.tab');
+  const pages = document.querySelectorAll('.page');
+  const urlPath = document.getElementById('urlPath');
+  const viewport = document.getElementById('viewport');
+
+  function activate(name) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+    pages.forEach(p => p.classList.toggle('active', p.dataset.page === name));
+    urlPath.textContent = '/' + name;
+    viewport.scrollTop = 0;
+    document.title = `Ramzy Girgis — ${name}`;
+  }
+
+  tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+
+  // ─── Floating terminal greeting ─────────────────────────────
+  const terminal    = document.getElementById('terminal');
+  const termBody    = document.getElementById('termBody');
+  const termTyped   = document.getElementById('termTyped');
+  const termBlink   = document.getElementById('termBlink');
+  const termClose   = document.getElementById('termClose');
+  const termHidden  = document.getElementById('termHidden');
+  const termPrompt  = document.getElementById('termPromptLine');
+
+  let answered = false;
+
+  function appendLine(html, cls = '') {
+    const div = document.createElement('div');
+    div.className = 'line ' + cls;
+    div.innerHTML = html;
+    termBody.appendChild(div);
+    return div;
+  }
+
+  function dismissTerminal(delay = 700) {
+    setTimeout(() => {
+      terminal.classList.add('closing');
+      const backdrop = document.getElementById('backdrop');
+      if (backdrop) {
+        backdrop.classList.add('closing');
+        setTimeout(() => backdrop.remove(), 280);
+      }
+      setTimeout(() => {
+        terminal.remove();
+        showTipNotification();
+      }, 280);
+    }, delay);
+  }
+
+  // macOS-style tip notification that follows the welcome terminal
+  function showTipNotification() {
+    const notif = document.getElementById('notif');
+    if (!notif) return;
+    // small beat after terminal fades so it doesn't feel like one continuous event
+    setTimeout(() => {
+      notif.classList.add('show');
+
+      let dismissed = false;
+      const dismiss = () => {
+        if (dismissed) return;
+        dismissed = true;
+        notif.classList.remove('show');
+        notif.classList.add('hide');
+        setTimeout(() => notif.remove(), 600);
+      };
+
+      notif.addEventListener('click', dismiss);
+      setTimeout(dismiss, 6500); // auto-dismiss after 6.5s
+    }, 450);
+  }
+
+  function handleAnswer(letter) {
+    if (answered) return;
+    const v = letter.toLowerCase();
+    if (v !== 'y' && v !== 'n') return;
+    answered = true;
+
+    // show what they pressed in place of the cursor
+    termTyped.textContent = v;
+    termBlink.classList.add('hidden');
+
+    if (v === 'y') {
+      appendLine(`<span class="term-success">✓</span> <span class="term-muted">make yourself at home.</span>`);
+      dismissTerminal(1600);
+    } else {
+      appendLine(`<span class="term-accent" style="font-weight:500;letter-spacing:0.05em">TOO BAD.</span>`);
+      dismissTerminal(1600);
+    }
+  }
+
+  // desktop: listen for any key while terminal is open
+  document.addEventListener('keydown', (e) => {
+    if (!document.body.contains(terminal)) return;
+    if (answered) return;
+    // never swallow modifier combos (cmd-1 tab switch, cmd-r reload, etc.)
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      dismissTerminal(0);
+      return;
+    }
+    if (e.key === 'y' || e.key === 'Y') { e.preventDefault(); handleAnswer('y'); return; }
+    if (e.key === 'n' || e.key === 'N') { e.preventDefault(); handleAnswer('n'); return; }
+
+    // any other printable key → brief visual nudge so the user knows we heard them
+    if (e.key.length === 1) {
+      e.preventDefault();
+      termPrompt.animate(
+        [{ transform: 'translateX(0)' }, { transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'translateX(0)' }],
+        { duration: 180, easing: 'ease-out' }
+      );
+    }
+  });
+
+  // mobile: tapping the terminal focuses a hidden input → on-screen keyboard appears
+  terminal.addEventListener('click', (e) => {
+    if (answered) return;
+    if (e.target === termClose) return;
+    termHidden.focus();
+  });
+
+  // catch input from the hidden field (mobile keyboards)
+  termHidden.addEventListener('input', () => {
+    const v = termHidden.value;
+    termHidden.value = '';
+    if (!v) return;
+    handleAnswer(v[v.length - 1]);
+  });
+
+  // close button
+  termClose.addEventListener('click', () => dismissTerminal(0));
+  // don't let close button start a drag
+  termClose.addEventListener('pointerdown', (e) => e.stopPropagation());
+
+  // ─── Drag + resize ──────────────────────────────────────────
+  // First user gesture pins the terminal to absolute coords (clears the
+  // initial translateX(-50%) centering so position math is straightforward).
+  function pinPosition() {
+    if (terminal.dataset.pinned === '1') return;
+    const r = terminal.getBoundingClientRect();
+    terminal.style.left = r.left + 'px';
+    terminal.style.top  = r.top + 'px';
+    terminal.style.width  = r.width + 'px';
+    terminal.style.height = r.height + 'px';
+    terminal.style.transform = 'none';
+    terminal.dataset.pinned = '1';
+  }
+
+  // Drag from the title bar
+  const termBar = document.getElementById('termBar');
+  let drag = null;
+  termBar.addEventListener('pointerdown', (e) => {
+    if (e.button !== undefined && e.button !== 0) return;
+    if (termClose.contains(e.target)) return;
+    e.preventDefault();
+    pinPosition();
+    const r = terminal.getBoundingClientRect();
+    drag = { dx: e.clientX - r.left, dy: e.clientY - r.top, id: e.pointerId };
+    termBar.setPointerCapture(e.pointerId);
+    termBar.classList.add('dragging');
+    terminal.classList.add('lifted');
+  });
+  termBar.addEventListener('pointermove', (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const w = terminal.offsetWidth;
+    const h = terminal.offsetHeight;
+    let x = e.clientX - drag.dx;
+    let y = e.clientY - drag.dy;
+    // keep most of the window on-screen (allow ~20px overhang so you can dock to edges)
+    x = Math.max(-w + 60, Math.min(x, window.innerWidth - 60));
+    y = Math.max(0, Math.min(y, window.innerHeight - 32));
+    terminal.style.left = x + 'px';
+    terminal.style.top  = y + 'px';
+  });
+  function endDrag(e) {
+    if (!drag) return;
+    try { termBar.releasePointerCapture(drag.id); } catch (_) {}
+    drag = null;
+    termBar.classList.remove('dragging');
+    terminal.classList.remove('lifted');
+  }
+  termBar.addEventListener('pointerup', endDrag);
+  termBar.addEventListener('pointercancel', endDrag);
+
+  // Resize from any of the 8 handles. Direction encoded in data-dir
+  // ("n"/"s"/"e"/"w"/"nw"/"ne"/"sw"/"se"). We track all four edges of the
+  // rect at gesture start and only modify the ones the direction touches —
+  // that way each handle's math is the same shape, just different switches.
+  const MIN_W = 280, MIN_H = 140;
+  let resz = null;
+
+  terminal.querySelectorAll('.term-handle').forEach(h => {
+    h.addEventListener('pointerdown', (e) => {
+      if (e.button !== undefined && e.button !== 0) return;
+      e.preventDefault();
+      e.stopPropagation();
+      pinPosition();
+      const r = terminal.getBoundingClientRect();
+      resz = {
+        dir: h.dataset.dir,
+        mx: e.clientX, my: e.clientY,
+        left: r.left, top: r.top, right: r.right, bottom: r.bottom,
+        id: e.pointerId,
+      };
+      h.setPointerCapture(e.pointerId);
+    });
+
+    h.addEventListener('pointermove', (e) => {
+      if (!resz || e.pointerId !== resz.id) return;
+      const dx = e.clientX - resz.mx;
+      const dy = e.clientY - resz.my;
+      let { left, top, right, bottom, dir } = resz;
+
+      if (dir.includes('e')) right  = resz.right  + dx;
+      if (dir.includes('w')) left   = resz.left   + dx;
+      if (dir.includes('s')) bottom = resz.bottom + dy;
+      if (dir.includes('n')) top    = resz.top    + dy;
+
+      // viewport bounds
+      left   = Math.max(0, left);
+      top    = Math.max(0, top);
+      right  = Math.min(window.innerWidth,  right);
+      bottom = Math.min(window.innerHeight, bottom);
+
+      // enforce min size, pinning the opposite edge
+      if (right - left < MIN_W) {
+        if (dir.includes('w')) left = right - MIN_W;
+        else right = left + MIN_W;
+      }
+      if (bottom - top < MIN_H) {
+        if (dir.includes('n')) top = bottom - MIN_H;
+        else bottom = top + MIN_H;
+      }
+
+      terminal.style.left   = left + 'px';
+      terminal.style.top    = top + 'px';
+      terminal.style.width  = (right - left) + 'px';
+      terminal.style.height = (bottom - top) + 'px';
+    });
+
+    const end = () => {
+      if (!resz) return;
+      try { h.releasePointerCapture(resz.id); } catch (_) {}
+      resz = null;
+    };
+    h.addEventListener('pointerup', end);
+    h.addEventListener('pointercancel', end);
+  });
+
+  // ─── Keyboard niceties ──────────────────────────────────────
+  document.addEventListener('keydown', (e) => {
+    // ⌘/Ctrl + [1-6] to jump tabs
+    if ((e.metaKey || e.ctrlKey) && /^[1-6]$/.test(e.key)) {
+      e.preventDefault();
+      const order = ['about','projects','skills','experience','math','contact'];
+      activate(order[parseInt(e.key, 10) - 1]);
+    }
+  });
+</script>
+</body>
+</html>
