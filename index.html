@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ramzy Girgis — Software Engineer</title>
+<title>ramzyg</title>
+<link rel="icon" href ="/varphi.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
@@ -956,7 +957,7 @@
       <section class="page" data-page="math">
         <div class="eyebrow">math</div>
         <h2 class="section-title">Math.</h2>
-        <p class="lead">What I love about math is when a long chain of coincidences turns out to come from the same deep idea. Algebra and number theory pull me hardest on the pure side; on the applied side, probability theory and ML are where the math actually does work.</p>
+        <p class="lead">My favourite thing about learning math is when a long chain of coincidences turns out to come from the same deep idea. Algebra and number theory pull me hardest on the pure side; on the applied side, probability theory and ML are where the math actually does work.</p>
         <p class="body">A running list of what I've taken, what I'm reading, and a few results I keep coming back to.</p>
 
         <div class="math-block">
@@ -1042,36 +1043,34 @@
           <h3>Favourite theorems</h3>
           <ul class="theorem-list">
             <li>
-              <span class="theorem-name">Tannaka–Krein Duality</span>
-              <p class="theorem-desc">A compact group $G$ can be reconstructed from its category of finite-dimensional representations together with their tensor structure:</p>
-              <div class="theorem-math">$$G \cong \mathrm{Aut}^\otimes(F),$$</div>
-              <p class="theorem-desc">where $F: \mathrm{Rep}(G) \to \mathrm{Vec}$ is the forgetful functor.</p>
-              <p class="theorem-importance">A group is equivalent to <em>how it acts on all vector spaces</em>. The seed of quantum groups and categorical reconstruction.</p>
+              <span class="theorem-name">First Isomorphism Theorem</span>
+              <p class="theorem-desc">Every group homomorphism $\varphi: G \to H$ induces an isomorphism:</p>
+              <div class="theorem-math">$$G/\ker\varphi \;\cong\; \mathrm{im}\,\varphi.$$</div>
+              <p class="theorem-importance">This shows up all over the place in math. This construction takes a map and boils it down to the information that it preserves; any homomorphism factors as a projection followed by an embedding. The same statement holds verbatim for rings, modules, and vector spaces.</p>
             </li>
             <li>
-              <span class="theorem-name">Hilbert's Theorem 90</span>
-              <p class="theorem-desc">For a cyclic Galois extension $L/K$ with generator $\sigma$:</p>
-              <div class="theorem-math">$$H^1(\mathrm{Gal}(L/K), L^\times) = 0,$$</div>
-              <p class="theorem-desc">equivalently $N_{L/K}(x) = 1 \implies x = y/\sigma(y)$ for some $y \in L^\times$. Over $\mathbb{F}_{q^n}/\mathbb{F}_q$ this reads $N(x) = 1 \implies x = y/y^q$.</p>
-              <p class="theorem-importance">The first deep cohomological triviality in number theory. Seed of Galois cohomology, descent theory, and modern algebraic geometry.</p>
+              <span class="theorem-name">Absolute Galois group is a Cantor set</span>
+              <p class="theorem-desc">The absolute Galois group $G_\mathbb{Q} = \mathrm{Gal}(\overline{\mathbb{Q}}/\mathbb{Q})$, equipped with its Krull topology, is compact, totally disconnected, perfect, and uncountable, hence homeomorphic (as a topological space) to the Cantor set.</p>
+              <p class="theorem-importance">The “symmetry of all algebraic numbers” is fractal at its core: no isolated points, no smooth structure. Motivates profinite groups and Galois representations.</p>
             </li>
             <li>
               <span class="theorem-name">Peter–Weyl Theorem</span>
               <p class="theorem-desc">For a compact group $G$, matrix coefficients of irreducible unitary representations are dense in $C(G)$ and orthonormal in $L^2(G)$:</p>
               <div class="theorem-math">$$L^2(G) \cong \bigoplus_{\pi \in \hat G} V_\pi \otimes V_\pi^*.$$</div>
-              <p class="theorem-importance">Fourier analysis on arbitrary compact groups — irreducible representations are the <em>frequencies</em> of symmetry. Underlies harmonic analysis and Lie group theory.</p>
+              <p class="theorem-importance">Fourier analysis is just a special case of this theorem. Fourier analysis works because the circle is a compact group; Peter-Weyl says that we can do something similar for all other compact groups. In physics, Peter–Weyl explains why angular momentum and spherical harmonics work.</p>
             </li>
             <li>
-              <span class="theorem-name">Absolute Galois group is a Cantor set</span>
-              <p class="theorem-desc">The absolute Galois group $G_\mathbb{Q} = \mathrm{Gal}(\overline{\mathbb{Q}}/\mathbb{Q})$, equipped with its Krull topology, is compact, totally disconnected, perfect, and uncountable — hence homeomorphic (as a topological space) to the Cantor set.</p>
-              <p class="theorem-importance">The “symmetry of all algebraic numbers” is fractal at its core: no isolated points, no smooth structure. Motivates profinite groups and Galois representations.</p>
-            </li>
-            <li>
-              <span class="theorem-name">Profinite completion of $\mathbb{Z}$</span>
+              <span class="theorem-name">Profinite completion of the integers</span>
               <p class="theorem-desc">The profinite completion of the integers decomposes as</p>
-              <div class="theorem-math">$$\widehat{\mathbb{Z}} \cong \prod_p \mathbb{Z}_p,$$</div>
-              <p class="theorem-desc">a product over all primes of the $p$-adic integers. Equivalently $\widehat{\mathbb{Z}} = \varprojlim_n \mathbb{Z}/n\mathbb{Z}$.</p>
-              <p class="theorem-importance">Integers are determined by all their modular shadows. Backbone of local–global principles, class field theory, and adèles.</p>
+              <div class="theorem-math">$$\widehat{\mathbb{Z}} = \varprojlim_n\,\, \mathbb{Z}/n\mathbb{Z}\cong \prod_p \mathbb{Z}_p,$$</div>
+              <p class="theorem-desc">a product over all primes of the $p$-adic integers.</p>
+              <p class="theorem-importance">This is just super cool; integers are determined by all their modular shadows.</p>
+            </li>
+            <li>
+              <span class="theorem-name">Probability that an integer is squarefree</span>
+              <p class="theorem-desc">The natural density of positive integers not divisible by any $p^2$ is</p>
+              <div class="theorem-math">$$\frac{6}{\pi^2} = \frac{1}{\zeta(2)} = \prod_p \left(1 - \frac{1}{p^2}\right) \approx 0.6079.$$</div>
+              <p class="theorem-importance">About 61% of integers have no repeated prime factor — and the answer involves $\pi$. The Euler product is the punchline: independence of primes makes the density multiplicative.</p>
             </li>
           </ul>
         </div>
